@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Store</title>
+</head>
+<body>
+    <h1>Book Catalog</h1>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock Quantity</th>
+            <th>Action</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book[1] }}</td>
+            <td>{{ book[2] }}</td>
+            <td>{{ book[3] }}</td>
+            <td>${{ book[4] }}</td>
+            <td>{{ book[5] }}</td>
+            <td><a href="{{ url_for('add_to_cart', book_id=book[0]) }}">Add to Cart</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

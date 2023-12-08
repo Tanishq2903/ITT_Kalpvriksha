@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment form</title>
+</head>
+<body>
+    <form action="">
+        <h1>
+            Paymentform
+        </h1>
+        <h2>
+            Contact information
+        </h2>
+        <p>required to submit *</p>
+        <p>Name*: <input type="text" name="name"></p>
+       <fieldset>
+        <legend>Gender</legend> <p> 
+            Male <input type="radio" name="gender" id="gender">
+            Female <input type="radio" name="gender" id="gender">
+        </p></fieldset>
+       <hr>
+       <h2>Payment type</h2>
+       <p>Card type
+        <select name="Card_type" id="Card_type">
+        <option value="">--select a card type--</option>
+        <option value="visa">Visa</option>
+        <option value="mastercard">mastercard</option>
+       <option value="rupay"></option></p>
+       </select>
+       <p>card number<input type="card number"></p>
+       <p>expiration details <input type="date" name="date" id="date"></p>
+       <p>cvv <input type="password"></p>
+       <p>pay now <input type="submit"></p>
+    
+    </form>
+    <script>
+        // naming conventions
+
+        //camelcase
+      let firstName = "Tanishq";
+      //pascalcase
+      let LastName = "Maharshi";
+       //snakecase
+       let middle_name = "R";
+       //using constant
+       const price = 100;
+       //string
+       var CourseName = "fgvfg";
+       //no.
+       var cardNo = 12345678;
+       //Payment Status (Boolean)
+       var isPaid = true;
+       // declaring a variable
+       var modeOfPayment;
+       //taking input
+       modeOfPayment = prompt("mode of payment?");
+       //output
+       alert(firstName + "successfully bought" + CourseName + "using" + modeOfPayment);
+
+    </script>
+</body>
+</html>

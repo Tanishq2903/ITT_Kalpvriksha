@@ -1,0 +1,33 @@
+/* .container{
+    display: flex;
+} */
+.top{
+    border: 1px;
+background-color: orange;
+height: 33vh;
+width: 100vmax;
+}
+.middle{
+    border: 1px;
+   background-color: white;
+    height: 33vh;
+    width: 100vmax;
+}
+.wheel{
+    border: 1px solid blue;
+    border-radius: 50%;
+   
+    height: 33vh;
+    width: 250px;
+    position: absolute;
+    margin-left: 40%;
+}
+.bar{
+    
+}
+.bottom{
+    border: 1px;
+   background-color: green;
+    height:33vh ;
+    width: 100vmax;
+}

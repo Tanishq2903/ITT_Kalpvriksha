@@ -1,0 +1,26 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class Temp {
+    public static void main(String[] args) {
+         String s = "axc" ;
+        String t = "ahbgdc";
+        System.out.println(a(s,t));
+         }
+         public static boolean a(String s , String t){
+           
+            Set<Character> set = new HashSet<>();
+            for(int i = 0 ; i<t.length();i++){
+                set.add(t.charAt(i));
+                
+            } 
+     
+            for(int i =0; i<s.length() ; i++){
+                if(!set.contains(s.charAt(i))) {return false;}
+                
+            }
+            return true;
+         }
+ }
+
+
