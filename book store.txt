@@ -1,0 +1,91 @@
+-- Create tables
+CREATE TABLE authors (
+    author_id INT PRIMARY KEY,
+    author_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author_id INT,
+    price DECIMAL(10, 2) NOT NULL,
+    stock_quantity INT NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+);
+
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+CREATE TABLE order_items (
+    order_item_id INT PRIMARY KEY,
+    order_id INT,
+    book_id INT,
+    quantity INT NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
+
+-- Insert sample data
+INSERT INTO authors VALUES (1, 'Author 1');
+INSERT INTO authors VALUES (2, 'Author 2');
+
+INSERT INTO books VALUES (1, 'Book 1', 1, 29.99, 100);
+INSERT INTO books VALUES (2, 'Book 2', 1, 19.99, 50);
+INSERT INTO books VALUES (3, 'Book 3', 2, 24.99, 75);
+
+INSERT INTO customers VALUES (1, 'Customer 1', 'customer1@email.com');
+INSERT INTO customers VALUES (2, 'Customer 2', 'customer2@email.com');
+
+INSERT INTO orders VALUES (1, 1, '2023-01-01');
+INSERT INTO orders VALUES (2, 2, '2023-02-01');
+
+INSERT INTO order_items VALUES (1, 1, 1, 2, 59.98);
+INSERT INTO order_items VALUES (2, 1, 2, 1, 19.99);
+INSERT INTO order_items VALUES (3, 2, 3, 3, 74.97);
+
+-- Retrieve information about orders and customers
+SELECT
+    orders.order_id,
+    orders.order_date,
+    customers.customer_name,
+    customers.email,
+    SUM(order_items.total_price) AS total_order_price
+FROM
+    orders
+JOIN
+    customers ON orders.customer_id = customers.customer_id
+JOIN
+    order_items ON orders.order_id = order_items.order_id
+GROUP BY
+    orders.order_id, orders.order_date, customers.customer_name, customers.email;
+
+-- Retrieve information about available books and authors
+SELECT
+    books.title,
+    authors.author_name,
+    books.price,
+    books.stock_quantity
+FROM
+    books
+JOIN
+    authors ON books.author_id = authors.author_id;
+
+-- Update stock quantity after an order is placed
+UPDATE books
+SET
+    stock_quantity = stock_quantity - order_items.quantity
+FROM
+    order_items
+WHERE
+    books.book_id = order_items.book_id;

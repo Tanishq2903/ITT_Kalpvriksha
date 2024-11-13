@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart</title>
+</head>
+<body>
+    <h1>Add to Cart</h1>
+    <form action="{{ url_for('place_order') }}" method="post">
+        <input type="hidden" name="book_id" value="{{ book[0] }}">
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" min="1" max="{{ book[5] }}" required>
+        <button type="submit">Place Order</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to Catalog</a>
+</body>
+</html>
