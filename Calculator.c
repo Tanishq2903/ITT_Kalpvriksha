@@ -3,6 +3,8 @@
 #include<string.h>
 #include<ctype.h>
 
+//again raising pull request
+
 int pre(char operator){
     if(operator == '+' || operator == '-')return 1;
     else return 2;
@@ -28,6 +30,8 @@ int calculations(int num , int num1 , char operator){
     return ans;
 }
 
+//again raising pull request
+
 int cal(char *exp){
 int ans= 0;
 int number = 0;
@@ -45,7 +49,7 @@ while(i < strlen(exp)){
         }
         numbersarray[n++] = num;
 
-    }
+    } //again raising pull request
     else if(exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '/'  ){
         if(o >= 0 && pre(exp[i]) <= pre(operatorarray[o]) ){
             ans = calculations(numbersarray[n-2],numbersarray[n-1],operatorarray[o]);
@@ -64,7 +68,7 @@ while(i < strlen(exp)){
     }
 
 
-}
+}//again raising pull request
 
 
 while(o >= 0){
@@ -74,7 +78,11 @@ while(o >= 0){
             o--;
 }
 return numbersarray[0];
+
+
 }
+
+//again raising pull request
 
 int main(){
     char exp[200];
@@ -84,3 +92,4 @@ int main(){
     printf("%d",result);
     return 0;
 }
+//again raising pull request
