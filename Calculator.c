@@ -79,7 +79,7 @@ return numbersarray[0];
 int main(){
     char exp[200];
     printf("Enter the string :");
-    scanf("%[^\n]s",exp);
+    scanf("%[^\n]s",exp);//this %[^\n]s means input is taken till new line
     int result = cal(exp);
     printf("%d",result);
     return 0;
