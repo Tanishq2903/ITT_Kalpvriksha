@@ -17,6 +17,12 @@ void createFile(){
     }
     fclose(fptr);
 }
+
+
+//again raising pull request
+
+
+
 void create(int id,int age , char name[]){
    createFile();
     FILE* fptr;
@@ -24,6 +30,15 @@ void create(int id,int age , char name[]){
     fprintf(fptr,"%d %d %s\n",id,age,name);
     fclose(fptr);
 }
+
+
+
+
+//again raising pull request
+
+
+
+
 void delete(int id){
     FILE* file1 = fopen("users.txt","r");
      FILE* file2 = fopen("temp.txt","w");
@@ -43,6 +58,9 @@ void delete(int id){
      rename("temp.txt","users.txt");
 }
 
+
+//again raising pull request
+
 void read(){
     FILE* file1 = fopen("users.txt","r");
      User user;
@@ -53,6 +71,10 @@ void read(){
      }
      fclose(file1);
 }
+
+
+
+//again raising pull request
 
 void update(int newid , int newage , char newname[]){
           FILE* file1 = fopen("users.txt","r");
@@ -75,6 +97,14 @@ void update(int newid , int newage , char newname[]){
      remove("users.txt");
      rename("temp.txt","users.txt");
 }
+
+
+
+
+//again raising pull request
+
+
+
 int main(){
     int age;
     int id;
@@ -114,3 +144,4 @@ int main(){
      default : printf("enter valid number");
     }
 }
+//again raising pull request
