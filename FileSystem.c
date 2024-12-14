@@ -1,13 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
-
-//again raising pull request
+#include<string.h>
 
 typedef struct {
     int id;
     int age;
     char name[50];
 }User;
+
+void display(User user){
+
+printf("id: %d , age: %d , name: %s\n", user.id, user.age, user.name);
+
+}
+
+void printinFile(FILE* fptr , User user){
+ fprintf(fptr,"%d %d %s\n",user.id,user.age,user.name);
+}
+
+
 void createFile(){
     FILE* fptr;
     fptr=fopen("users.txt","r");
@@ -17,26 +28,18 @@ void createFile(){
     }
     fclose(fptr);
 }
-
-
-//again raising pull request
-
-
-
 void create(int id,int age , char name[]){
    createFile();
     FILE* fptr;
     fptr=fopen("users.txt","a");
-    fprintf(fptr,"%d %d %s\n",id,age,name);
+    User user;
+    user.id = id;
+    user.age = age;
+    strcpy(user.name,name);
+      printinFile(fptr,user);
+
     fclose(fptr);
 }
-
-
-
-
-//again raising pull request
-
-
 
 
 void delete(int id){
@@ -49,7 +52,7 @@ void delete(int id){
      User user;
      while(fscanf(file1,"%d %d %49s\n",&user.id,&user.age,user.name) == 3){
         if(user.id != id){
-            fprintf(file2,"%d %d %s\n",user.id,user.age,user.name);
+            printinFile(file2,user);
         }
      }
      fclose(file1);
@@ -59,22 +62,17 @@ void delete(int id){
 }
 
 
-//again raising pull request
 
 void read(){
     FILE* file1 = fopen("users.txt","r");
      User user;
      while(fscanf(file1,"%d %d %s\n",&user.id,&user.age,user.name)  == 3){
        
-          printf("%d %d %s\n",user.id,user.age,user.name);
+         display(user);
         
      }
      fclose(file1);
 }
-
-
-
-//again raising pull request
 
 void update(int newid , int newage , char newname[]){
           FILE* file1 = fopen("users.txt","r");
@@ -86,10 +84,14 @@ void update(int newid , int newage , char newname[]){
      User user;
      while(fscanf(file1,"%d %d %s\n",&user.id,&user.age,user.name) == 3){
         if(user.id != newid){
-            fprintf(file2,"%d %d %s\n",user.id,user.age,user.name);
+          printinFile(file2,user);
         }
         else {
-         fprintf(file2,"%d %d %s\n",newid,newage,newname);
+         User updateduser;
+         updateduser.id = newid;
+         updateduser.age = newage;
+          strcpy(updateduser.name,newname);
+      printinFile(file2,updateduser);
         }
      }
      fclose(file1);
@@ -98,10 +100,14 @@ void update(int newid , int newage , char newname[]){
      rename("temp.txt","users.txt");
 }
 
-
-
-
-//again raising pull request
+void input(int* id , int* age , char name[]){
+             printf("add id :");
+              scanf("%d",id);
+              printf("add age :");
+              scanf("%d",age);
+              printf("add name :");
+              scanf("%s",name);
+}
 
 
 
@@ -113,13 +119,8 @@ int main(){
     printf("to add user press 1 \n to delete user press 2 \n to view user press 3\n to update user press 4\n");
     scanf("%d" , &options);
     switch(options){
-     case 1 : printf("add id :");
-              scanf("%d",&id);
-              printf("add age :");
-              scanf("%d",&age);
-              printf("add name :");
-              scanf("%s",name);
-              create(id,age,name);
+     case 1 :  input(&id,&age,name);
+      create(id,age,name);
               printf("task done");
               break;
               
@@ -132,16 +133,10 @@ int main(){
      case 3 : read();
               break;
 
-     case 4 : printf("add id :");
-              scanf("%d",&id);
-              printf("add age :");
-              scanf("%d",&age);
-              printf("add name :");
-              scanf("%s",name);
+     case 4 :  input(&id,&age,name);
               update(id,age,name);
               printf("task done");
               break;
      default : printf("enter valid number");
     }
 }
-//again raising pull request
