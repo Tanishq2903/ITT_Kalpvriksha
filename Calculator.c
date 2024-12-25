@@ -51,6 +51,8 @@ int calculateString(char *expression)
     int numtop = 0;
     int operatortop = -1;
     int i = 0;
+
+    char lastCharacter = 0;
     while (i < strlen(expression))
     {
         if (isdigit(expression[i]))
@@ -62,10 +64,11 @@ int calculateString(char *expression)
                 i++;
             }
             numbersarray[numtop++] = num;
+            lastCharacter = 'd';  //here d means digit
         }
         else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/')
         {
-            if (i == 0 || !isdigit(expression[i-1]) )
+            if (lastCharacter == 'o'|| lastCharacter == 0 )
             {
                 printf("invalid string");
                 return -1;
@@ -79,6 +82,7 @@ int calculateString(char *expression)
                 operatortop--;
             }
             operatorarray[++operatortop] = expression[i];
+            lastCharacter = 'o'; //here o means operator
             i++;
         }
         else if (expression[i] == ' ')
