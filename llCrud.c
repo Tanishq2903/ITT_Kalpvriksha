@@ -29,51 +29,51 @@ void display(Node *head)
     printf("\n");
 }
 
-Node *insertAtBeginning(int value, Node *head)
+void insertAtBeginning(int value, Node **head)
 {
-    if (!head)
+    if (*head == NULL)
     {
-        head = createNode(value);
+        *head = createNode(value);
     }
     else
     {
         Node *temp = createNode(value);
-        temp->next = head;
-        head = temp;
+        temp->next = *head;
+        *head = temp;
     }
-    return head;
+   
 }
 
-Node *insertAtLast(int value, Node *head)
+void insertAtLast(int value, Node **head)
 {
-    if (!head)
+    if (!*head)
     {
-        head = createNode(value);
+        *head = createNode(value);
     }
     else
     {
         Node *temp = createNode(value);
-        Node *newHead = head;
+        Node *newHead = *head;
         while (newHead->next != NULL)
         {
             newHead = newHead->next;
         }
         newHead->next = temp;
     }
-    return head;
+   
 }
 
-Node *insertAtPosition(int value, Node *head, int position)
+void insertAtPosition(int value, Node **head, int position)
 {
     if (position == 1)
     {
-        head = insertAtBeginning(value, head);
+      insertAtBeginning(value, head);
     }
     else
     {
         int flag = 0;
         int currentPosition = 1;
-        Node *temp = head;
+        Node *temp = *head;
         while (currentPosition < position - 1)
         {
             temp = temp->next;
@@ -81,7 +81,7 @@ Node *insertAtPosition(int value, Node *head, int position)
             if (!temp)
             {
                 flag = 1;
-                printf("Invalid position entered");
+                printf("Invalid position entered\n");
                 break;
             }
         }
@@ -93,34 +93,33 @@ Node *insertAtPosition(int value, Node *head, int position)
             temp->next = newNode;
         }
     }
-    return head;
+   
 }
 
-Node *deleteAtBeginning(Node *head)
+void deleteAtBeginning(Node **head)
 {
-    if (!head)
+    if (!(*head))
     {
         printf("No elements to delete");
     }
-    else if (head->next == NULL)
+    else if ((*head)->next == NULL)
     {
-        head = NULL;
+        *head = NULL;
     }
-    else if (head->next != NULL)
+    else if ((*head)->next != NULL)
     {
-        Node *temp = head->next;
-        head = temp;
+        Node *temp = (*head)->next;
+        (*head) = temp;
     }
 
-    return head;
+    
 }
-
-Node *deleteAtPosition(Node *head, int position)
+void deleteAtPosition(Node **head, int position)
 {
     if (position == 1)
     {
-        head = deleteAtBeginning(head);
-        return head;
+        deleteAtBeginning(head);
+        return ;
     }
     if (!head)
     {
@@ -128,7 +127,7 @@ Node *deleteAtPosition(Node *head, int position)
     }
     else
     {
-        Node *temp = head;
+        Node *temp = *head;
         int currentPosition = 1;
         int flag = 0;
         while (currentPosition != position - 1)
@@ -159,19 +158,19 @@ Node *deleteAtPosition(Node *head, int position)
                 temp->next = NULL;
         }
     }
-    return head;
+   
 }
 
-Node *DeleteAtLast(Node *head)
+void DeleteAtLast(Node **head)
 {
 
-    if (!head)
+    if (!(*head))
     {
         printf("No elements to delete");
     }
     else
     {
-        Node *temp = head;
+        Node *temp = (*head);
         while (temp->next->next != NULL)
         {
             temp = temp->next;
@@ -179,12 +178,12 @@ Node *DeleteAtLast(Node *head)
         temp->next = NULL;
     }
 
-    return head;
+    
 }
 
-Node *updateAtPosition(int value, Node *head, int position)
+void updateAtPosition(int value, Node **head, int position)
 {
-    if (!head)
+    if (!(*head))
     {
         printf("Invalid");
     }
@@ -192,7 +191,7 @@ Node *updateAtPosition(int value, Node *head, int position)
     else
     {
         int flag = 0;
-        Node *temp = head;
+        Node *temp = *head;
         int currentPosition = 1;
         while (currentPosition < position)
         {
@@ -210,7 +209,7 @@ Node *updateAtPosition(int value, Node *head, int position)
             temp->data = value;
         }
     }
-    return head;
+   
 }
 
 int main()
@@ -232,17 +231,17 @@ int main()
         case 1:
             printf("Enter Value:");
             scanf("%d", &value);
-            head = insertAtLast(value, head);
+             insertAtLast(value, &head);
             break;
         case 2:
             printf("Enter Value:");
             scanf("%d", &value);
-            head = insertAtBeginning(value, head);
+          insertAtBeginning(value, &head);
             break;
         case 3:
             printf("Enter Value and index:");
             scanf("%d %d", &value, &position);
-            head = insertAtPosition(value, head, position);
+           insertAtPosition(value, &head, position);
             break;
         case 4:
             display(head);
@@ -250,18 +249,18 @@ int main()
         case 5:
             printf("Enter Value and index:");
             scanf("%d %d", &value, &position);
-            head = updateAtPosition(value, head, position);
+             updateAtPosition(value, &head, position);
             break;
         case 6:
-            head = deleteAtBeginning(head);
+            deleteAtBeginning(&head);
             break;
         case 7:
-            head = DeleteAtLast(head);
+             DeleteAtLast(&head);
             break;
         case 8:
             printf("Enter index:");
             scanf("%d", &position);
-            head = deleteAtPosition(head, position);
+           deleteAtPosition(&head, position);
             break;
         default:
             printf("Invalid Input\n");
