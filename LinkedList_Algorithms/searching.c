@@ -75,42 +75,41 @@ void binarySearch(node *head, int value, node *tail) // here to apply binary sea
         binarySearch(middle->next, value, tail);//recursion call we can also use infinite while loop instead of recursion for binary search
 }
 
-node *createLinkedList(char *input)
-{
+node *createLinkedList(char *input) {
     node *head = NULL;
     node *temp = NULL;
+    
     int inputIndex = 0;
     int negative = 0;
-    while (input[inputIndex] != '\0')
-    {
-        if (input[inputIndex] == '-')
-        {
+
+    while (input[inputIndex] != '\0') {
+        if (input[inputIndex] == '-') {
             negative = 1;
             inputIndex++;
-        }
-
-        else if (isdigit(input[inputIndex]))
-        {
+        } else if (isdigit(input[inputIndex])) {
             int num = 0;
-            while (isdigit(input[inputIndex]))
-            {
+
+            while (isdigit(input[inputIndex])) {
                 num = num * 10 + (input[inputIndex] - '0');
                 inputIndex++;
             }
-            if (head == NULL)
-            {
+
+            if (negative) {
+                num = -num;
+                negative = 0;
+            }
+
+            if (head == NULL) {
                 head = createNode(num);
                 temp = head;
-            }
-            else
-            {
+            } else {
                 temp->next = createNode(num);
                 temp = temp->next;
             }
-            negative = 0;
         }
         inputIndex++;
     }
+    
     return head;
 }
 
