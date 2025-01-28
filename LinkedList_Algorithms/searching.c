@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -157,7 +157,7 @@ int main()
     }
     return 0;
 }
-=======
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -315,4 +315,3 @@ int main()
     }
     return 0;
 }
->>>>>>> dbc898cfeeb98dc2c4100c76fa8bf7b2c07f3f4f
